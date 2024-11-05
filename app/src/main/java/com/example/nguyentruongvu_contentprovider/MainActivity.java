@@ -32,12 +32,10 @@ public class MainActivity extends AppCompatActivity {
         addControl();
         addEvents();
     }
-
     private void addControl() {
         btn_docdanhba = findViewById(R.id.btn_docdanhba);
         btn_doctinnhan = findViewById(R.id.btn_doctinnhan);
     }
-
     private void addEvents() {
         btn_docdanhba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +50,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void xuLyMoManHinhDanhBa() {
-
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{""+"android.permission.READ_CONTACTS"}, REQUEST_SMS_ASK_PERMISSIONS);
+            ActivityCompat.requestPermissions(this, new String[]{""+"android.permission.READ_CONTACTS"}, REQUEST_CONTACT_ASK_PERMISSIONS);
         } else {
             Intent intent = new Intent(MainActivity.this, DanhBa.class);
             intent.setClassName("com.example.nguyentruongvu_contentprovider", "com.example.nguyentruongvu_contentprovider.DanhBa");

@@ -19,13 +19,9 @@ import com.example.nguyentruongvu_contentprovider.model.Contact;
 import java.util.ArrayList;
 
 public class DanhBa extends AppCompatActivity {
-
-    private static final int REQUEST_CODE_ASK_PERMISSIONS=1001;
-
     ListView lvDanhBa;
     ArrayList<Contact> dsDanhBa;
     AdapterDanhBa adapterDanhBa;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +35,12 @@ public class DanhBa extends AppCompatActivity {
         addControls();
         showAllContactFromDevice();
     }
-
     private void addControls() {
         lvDanhBa = findViewById(R.id.lvDanhBa);
         dsDanhBa = new ArrayList<>();
         adapterDanhBa = new AdapterDanhBa(DanhBa.this, R.layout.item_danhba, dsDanhBa);
         lvDanhBa.setAdapter(adapterDanhBa);
     }
-
     private void showAllContactFromDevice() {
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
         Cursor cursor = getContentResolver().query(uri, null, null, null);

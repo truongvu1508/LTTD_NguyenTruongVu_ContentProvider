@@ -22,7 +22,6 @@ public class DocTinNhan extends AppCompatActivity {
     ListView lvDocTinNhan;
     ArrayList<TinNhan> dsTinNhan;
     AdapterTinNhan adapterTinNhan;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,27 +35,21 @@ public class DocTinNhan extends AppCompatActivity {
         addControl();
         docToanBoTinNhan();
     }
-
     private void docToanBoTinNhan() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         Uri uri = Uri.parse("content://sms/inbox");
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-
         if (cursor != null) {
             dsTinNhan.clear();
             try {
                 while (cursor.moveToNext()) {
-
                     int viTriPhoneNumber = cursor.getColumnIndex("address");
                     int viTriTimeStamp = cursor.getColumnIndex("date");
                     int viTriBody = cursor.getColumnIndex("body");
-
                     if (viTriPhoneNumber != -1 && viTriTimeStamp != -1 && viTriBody != -1) {
-
                         String phoneNumber = cursor.getString(viTriPhoneNumber);
                         String timeStamp = cursor.getString(viTriTimeStamp);
                         String body = cursor.getString(viTriBody);
-
                         dsTinNhan.add(new TinNhan(phoneNumber, simpleDateFormat.format(Long.parseLong(timeStamp)), body));
                     } else {
                         Log.e("DocTinNhan", "Không tìm thấy cột cần thiết trong Cursor");
@@ -68,7 +61,6 @@ public class DocTinNhan extends AppCompatActivity {
             }
         }
     }
-
     private void addControl() {
         lvDocTinNhan = findViewById(R.id.lvDocTinNhan);
         dsTinNhan = new ArrayList<>();
